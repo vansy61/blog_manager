@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>List Product</title>
+</head>
+
+
+
+<body class="bg-body-tertiary">
+    <nav th:replace="/layout :: menu "></nav>
+
+
+
+    <div class="container">
+        <div class="my-3 shadow-sm bg-white p-3 d-flex align-items-center justify-content-between">
+            <h3 class="mb-0">Danh sách blog</h3>
+        </div>
+        <div class="p-3 shadow-sm bg-white mt-3">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Tiêu đề</th>
+                    <th>Hình ảnh</th>
+                    <th>Tóm tắt</th>
+                    <th>Tác giả</th>
+                    <th>Sửa</th>
+                    <th>Xóa</th>
+                    <th>Xem</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="row,rowStat : ${blogs}">
+                    <td th:text="${row.getTitle()}"></td>
+                    <td th:text="${row.getAvatar()}"></td>
+                    <td th:text="${row.getSummary()}"></td>
+                    <td th:text="${row.getAuthor()}"></td>
+                    <td><a th:href="@{/{id}/edit(id=${row.getId()})}" class="btn btn-info">Sửa</a></td>
+                    <td><a th:href="@{/{id}/delete(id=${row.getId()})}" class="btn btn-danger">Xóa</a></td>
+                    <td><a th:href="@{/{id}/view(id=${row.getId()})}" class="btn btn-success">Xem</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

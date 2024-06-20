@@ -8,12 +8,14 @@
 
 <body class="bg-body-tertiary">
     <nav th:replace="/layout :: menu "></nav>
+    <nav th:replace="/layout :: notify "></nav>
 
 
 
     <div class="container">
         <div class="my-3 shadow-sm bg-white p-3 d-flex align-items-center justify-content-between">
             <h3 class="mb-0">Danh sách blog</h3>
+            <a th:href="@{/blogs/create}" class="btn btn-primary">Thêm mới</a>
         </div>
         <div class="p-3 shadow-sm bg-white mt-3">
             <table class="table table-bordered">
@@ -23,6 +25,7 @@
                     <th>Hình ảnh</th>
                     <th>Tóm tắt</th>
                     <th>Tác giả</th>
+                    <th>Ngày Tạo</th>
                     <th>Sửa</th>
                     <th>Xóa</th>
                     <th>Xem</th>
@@ -31,12 +34,15 @@
                 <tbody>
                 <tr th:each="row,rowStat : ${blogs}">
                     <td th:text="${row.getTitle()}"></td>
-                    <td th:text="${row.getAvatar()}"></td>
+                    <td>
+                        <img th:src="@{'/image/' + ${row.getAvatar()}}">
+                    </td>
                     <td th:text="${row.getSummary()}"></td>
                     <td th:text="${row.getAuthor()}"></td>
-                    <td><a th:href="@{/{id}/edit(id=${row.getId()})}" class="btn btn-info">Sửa</a></td>
-                    <td><a th:href="@{/{id}/delete(id=${row.getId()})}" class="btn btn-danger">Xóa</a></td>
-                    <td><a th:href="@{/{id}/view(id=${row.getId()})}" class="btn btn-success">Xem</a></td>
+                    <td th:text="${row.getCreatedAt()}"></td>
+                    <td><a th:href="@{/blogs/{id}/edit(id=${row.getId()})}" class="btn btn-info">Sửa</a></td>
+                    <td><a th:href="@{/blogs/{id}/delete(id=${row.getId()})}" class="btn btn-danger btn-destroy">Xóa</a></td>
+                    <td><a th:href="@{/blogs/{id}/view(id=${row.getId()})}" class="btn btn-success">Xem</a></td>
                 </tr>
                 </tbody>
             </table>

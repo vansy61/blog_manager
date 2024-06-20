@@ -29,10 +29,25 @@
         </div>
     </nav>
 
+    <div class="container" th:fragment="notify">
+        <div class="notify mt-3">
+            <div th:if="${success}">
+                <div class="alert alert-success" role="alert" th:text="${success}">
+                    A simple success alert—check it out!
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     <footer th:fragment="footer">
+
         <div class="py-3 text-center">
             Xin chào Việt Nam - Đây là Footer
         </div>
+
+        <script src="/js/jquery.js"></script>
+        <script src="/js/custom.js"></script>
     </footer>
 </body>
 </html>

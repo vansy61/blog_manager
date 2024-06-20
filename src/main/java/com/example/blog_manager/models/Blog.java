@@ -1,9 +1,7 @@
 package com.example.blog_manager.models;
 
-
-import jdk.nashorn.internal.objects.annotations.Setter;
-
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 public class Blog {
@@ -15,8 +13,10 @@ public class Blog {
     private String content;
     private String avatar;
     private String author;
+    private Date createdAt;
 
     public Blog() {
+        this.createdAt = new Date(System.currentTimeMillis());
     }
 
     public Blog(Long id, String title, String summary, String content, String avatar, String author) {
@@ -26,6 +26,7 @@ public class Blog {
         this.content = content;
         this.avatar = avatar;
         this.author = author;
+        this.createdAt = new Date(System.currentTimeMillis());
     }
 
     public Long getId() {
@@ -74,5 +75,25 @@ public class Blog {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Blog{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", summary='" + summary + '\'' +
+                ", content='" + content + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", author='" + author + '\'' +
+                '}';
     }
 }

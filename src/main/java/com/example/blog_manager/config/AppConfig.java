@@ -125,7 +125,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         System.out.println(upload);
         registry.addResourceHandler("/image/**")
-                .addResourceLocations(upload);
+                .addResourceLocations("file:" + upload);
     }
 
     //Upload file
